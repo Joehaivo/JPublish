@@ -6,23 +6,23 @@
 
 ### 使用
 
-- 1. 在工程根目录`build.gradle`文件中添加jitpack仓库源及依赖
+- 在工程根目录`build.gradle`文件中添加jitpack仓库源及依赖
 
 ```groovy
 buildscript {
-		repositories {
-				...
-				maven { url 'https://jitpack.io' }
-		}
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
   
-  	dependencies {
-      	...
-     		classpath "com.github.Joehaivo:JPublish:1.0.0" 
+    dependencies {
+        ...
+        classpath "com.github.Joehaivo:JPublish:1.0.0" 
     }
 }
 ```
 
-- 2. 在模块级别的`build.gradle`文件中添加以下代码，并根据当前模块填写`aarInfo`信息
+- 在模块级别的`build.gradle`文件中添加以下代码，并根据当前模块填写`aarInfo`信息
 
 ```groovy
 apply plugin: "com.android.library"
@@ -38,21 +38,21 @@ task YourTaskName(dependsOn: 'jpublish') {
 }
 ```
 
-- 3. 在工程根目录`gradle.properties`文件中添加：
+- 在工程根目录`gradle.properties`文件中添加：
 
 ```properties
 MAVEN_SNAPSHOT_URL=http://Your-Private-Maven-Repository-Snapshot-Url
 MAVEN_RELEASE_URL=http://Your-Private-Maven-Repository-Release-Url
 ```
 
-- 4. 在工程根目录`local.properties`文件中添加账号信息(推荐)，也可以填写在`gradle.properties`中(不推荐)
+- 在工程根目录`local.properties`文件中添加账号信息(推荐)，也可以填写在`gradle.properties`中(不推荐)
 
 ```properties
 MAVEN_USERNAME=Your-Private-Maven-Repository-Username
 MAVEN_PASSWORD=Your-Private-Maven-Repository-Password
 ```
 
-- 5. 点击 `task YourTaskName(dependsOn: 'jpublish') {` 左侧的绿色三角`▶️`运行即可，发布成功会在`Build Output`窗口打印发布地址
+- 点击 `task YourTaskName(dependsOn: 'jpublish') {` 左侧的绿色三角`▶️`运行即可，发布成功会在`Build Output`窗口打印发布地址
 
 
 ### 字段及解释
