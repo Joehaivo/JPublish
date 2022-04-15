@@ -5,8 +5,6 @@ buildscript {
         google()
         mavenLocal()
         maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-        maven{ url 'http://10.1.40.159:8081/repository/maven-releases/'}
-        maven{ url 'http://10.1.40.159:8081/repository/maven-snapshots/'}
     }
     dependencies {
 
@@ -21,8 +19,34 @@ allprojects {
         google()
         mavenLocal()
         maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-        maven{ url 'http://10.1.40.159:8081/repository/maven-releases/'}
-        maven{ url 'http://10.1.40.159:8081/repository/maven-snapshots/'}
+    }
+
+    version = "0.0.3"
+    group = 'io.github.Joehaivo'
+}
+
+// 发布到Jitpack ./gradlew build publishToMavenLocal
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+    sourceCompatibility = 1.8 // java 8
+    targetCompatibility = 1.8
+
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId project.group
+                artifactId project.name
+                version project.version
+                from components.java
+            }
+        }
     }
 }
 
